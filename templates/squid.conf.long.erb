@@ -762,6 +762,15 @@ acl CONNECT method CONNECT
 #
 # Only allow cachemgr access from localhost
 http_access allow manager localhost
+# user-defined manager ACLs
+<% @manager_acl.each do |line| -%>
+acl <%= line %>
+<% end -%>
+
+# user-defined manager http_accesses
+<% @manager_access.each do |line| -%>
+http_access <%= line %>
+<% end -%>
 http_access deny manager
 
 # Deny requests to certain unsafe ports
